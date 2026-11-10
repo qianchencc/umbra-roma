@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta name="description" content="UMBRA 罗马光影工坊 — 在明与暗之间，重新看见罗马。交互式建筑版画与二分光影创作。" />
+    <title>UMBRA — 罗马光影工坊</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body id="top">
+    <div class="site-shell">
+      <header class="header">
+        <a href="#top" class="brand" aria-label="UMBRA 首页">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-lockup"><span class="brand-name">UMBRA</span><span class="brand-subtitle">罗马光影工坊</span></span>
+        </a>
+        <nav class="nav" aria-label="主导航">
+          <a href="#studio" class="nav-link is-active">光影工坊</a>
+          <a href="#notes" class="nav-link">创作札记</a>
+          <button class="nav-export" type="button" data-action="export">导出作品 <span aria-hidden="true">↗</span></button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="asterisk">✳</span> ARCHITECTURE IN TWO TONES <span class="slash">/</span> VOL. 01</div>
+            <h1 id="hero-title">光，塑造永恒。</h1>
+          </div>
+          <aside class="hero-aside"><p>在明与暗之间，<br />重新看见罗马。</p><small>一场关于建筑与光的自由习作</small></aside>
+        </section>
+
+        <section id="studio" class="studio" aria-label="罗马建筑光影交互创作">
+          <div id="art-frame" class="art-frame">
+            <canvas id="art" aria-label="可拖动视角的古罗马建筑二分光影画面" role="img"></canvas>
+            <div class="art-corner top-left" aria-hidden="true"></div><div class="art-corner bottom-right" aria-hidden="true"></div>
+            <div class="scene-plaque" aria-live="polite"><span class="plaque-number" id="plaque-number">I.</span><span class="plaque-content"><small id="plaque-latin">FORUM ROMANUM</small><b id="plaque-zh">永恒柱廊</b></span></div>
+            <button id="fullscreen" type="button" class="canvas-button full-button" title="沉浸观看" aria-label="沉浸观看">⛶</button>
+            <div class="art-instruction">↔ &nbsp; 拖动，探索空间</div>
+            <button id="tour" type="button" class="canvas-button tour-button" aria-pressed="false"><span id="tour-symbol">▶</span><span id="tour-label">缓慢巡游</span></button>
+            <div class="art-signature" aria-hidden="true">UMBRA / <span id="art-counter">01</span>—03</div>
+          </div>
+          <div class="scene-selector" role="tablist" aria-label="建筑场景">
+            <button role="tab" class="scene-tab active" aria-selected="true" data-scene="0"><i>I</i><span>永恒柱廊</span></button>
+            <button role="tab" class="scene-tab" aria-selected="false" data-scene="1"><i>II</i><span>穹顶之下</span></button>
+            <button role="tab" class="scene-tab" aria-selected="false" data-scene="2"><i>III</i><span>时间拱廊</span></button>
+            <p id="scene-caption" class="scene-caption">柱列交错，光穿过秩序。</p>
+          </div>
+          <div class="control-bar">
+            <div class="control-block">
+              <label for="azimuth"><span><span class="control-glyph">☼</span> 光的方向</span><output id="azimuth-value" for="azimuth">135°</output></label>
+              <input id="azimuth" type="range" min="0" max="360" step="1" value="135" />
+              <div class="range-ends"><span>0°</span><span>360°</span></div>
+            </div>
+            <div class="control-block">
+              <label for="altitude"><span>太阳高度</span><output id="altitude-value" for="altitude">28°</output></label>
+              <input id="altitude" type="range" min="8" max="80" step="1" value="28" />
+              <div class="range-ends"><span>长影</span><span>短影</span></div>
+            </div>
+            <div class="control-block">
+              <label for="depth"><span>空间的深度</span><output id="depth-value" for="depth">65%</output></label>
+              <input id="depth" type="range" min="0" max="100" step="1" value="65" />
+              <div class="range-ends"><span>平面</span><span>纵深</span></div>
+            </div>
+            <div class="control-block control-palette">
+              <div class="palette-label"><span>作品色调</span><small>DUOTONE</small></div>
+              <div class="palette-options" role="group" aria-label="作品色调">
+                <button type="button" data-palette="limestone" class="palette-choice selected" aria-pressed="true"><span class="swatch limestone"></span>石灰</button>
+                <button type="button" data-palette="terracotta" class="palette-choice" aria-pressed="false"><span class="swatch terracotta"></span>赤陶</button>
+                <button type="button" data-palette="cyanotype" class="palette-choice" aria-pressed="false"><span class="swatch cyanotype"></span>蓝晒</button>
+              </div>
+            </div>
+            <button id="reset" type="button" class="reset-button" title="重置参数" aria-label="重置参数"><span aria-hidden="true">↶</span><small>重置</small></button>
+          </div>
+        </section>
+
+        <section class="closing" id="notes">
+          <div class="closing-title"><span class="edition">01 — 03</span><div><h2>让建筑退回形体，<br /><em>让光成为语言。</em></h2></div></div>
+          <div class="closing-text"><p>一道柱廊，一座穹顶，一段拱券。<br />把复杂留给时间，把画面交给明暗。</p><a href="#journal" class="text-link">关于这次光影习作 <span aria-hidden="true">→</span></a></div>
+          <div class="stamp" aria-hidden="true"><span>LUCE</span><span class="stamp-mark"></span><span>ET OMBRA</span></div>
+        </section>
+        <section id="journal" class="journal" aria-label="创作札记">
+          <div class="journal-head"><span>NOTES ON LIGHT / 创作札记</span><h2>建筑，是光的容器。</h2></div>
+          <div class="journal-grid"><article><small>I.</small><h3>只留下明与暗</h3><p>柱式、穹顶与连续的拱券，在一束硬光中分成清晰的两面。拿走繁复的材质，建筑的轮廓和比例便浮现出来。</p></article><article><small>II.</small><h3>在平面与空间之间</h3><p>移动「空间的深度」，观察重复柱列如何从平面般的排列展开成真实的纵深。拖动作品，可以寻找自己的观看位置。</p></article><article><small>III.</small><h3>留住你的光</h3><p>改变太阳方向与高度，挑选石灰、赤陶或蓝晒色调。找到喜欢的构图后，导出长边为 3840px 的作品。</p></article></div>
+          <p class="editorial-note">本作根据已保存的 UMBRA 网站设计预览复原，结合 Simcraft 的透视与二分光影方法，以代码重建原创建筑场景；并非具体遗址的考古复原。</p>
+        </section>
+      </main>
+      <footer class="footer"><span>UMBRA <span class="slash">/</span> 光与影的建筑诗</span><a href="https://github.com/dotslashsimran/simcraft" target="_blank" rel="noopener noreferrer">CRAFTED WITH SIMCRAFT ↗</a><span>ROMA, REIMAGINED.</span></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
