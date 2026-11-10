@@ -50,6 +50,30 @@ jobs:
           };
           export default nextConfig;
           CONFIG
+      - name: Adjust public asset URLs for project Pages path
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          prefix = "/umbra-roma"
+          substitutions = [('/favicon.svg', prefix + '/favicon.svg')]
+          # Only favicon paths need adjustment for this app
+          for folder in ['app', 'components', 'lib']:
+              base = Path(folder)
+              if not base.exists():
+                  continue
+              for file in base.rglob('*'):
+                  if file.suffix not in {'.tsx', '.ts', '.jsx', '.js', '.css'}:
+                      continue
+                  original = file.read_text(encoding='utf-8')
+                  updated = original
+                  for before, after in substitutions:
+                      if before == '/favicon.svg':
+                          updated = updated.replace('"' + before + '"', '"' + after + '"')
+                      else:
+                          updated = updated.replace('"' + before, '"' + after).replace("'" + before, "'" + after)
+                  if updated != original:
+                      file.write_text(updated, encoding='utf-8')
+          PY
       - name: Build original application as static site
         run: ./node_modules/.bin/next build
       - name: Inspect and verify static output
