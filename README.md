@@ -1,39 +1,32 @@
 # UMBRA — 罗马光影工坊
 
-交互式古罗马建筑二分光影艺术创作网站。以柱廊、穹顶与拱券为原型，将建筑转化为由高对比硬光、投影和克制色盘构成的版画式场景。
+A live architectural printmaking studio: original procedural Roman architecture, hard directional shadows, two-value color, and a level camera that preserves architectural verticals.
 
-> **源码说明：恢复版。** 最早的 UMBRA 网站由 ChatGPT Sites 发布于 2026-11-10，但该部署对应的原始工程文件不在当前工具环境中。本仓库根据保留的 UI 截图和功能规格进行重新实现，**不是原部署代码的逐文件备份**。原网站地址：[umbra-roma-atelier.brisk-corgi-8205.chatgpt.site](https://umbra-roma-atelier.brisk-corgi-8205.chatgpt.site/)。
+## Experience
 
-原始站点预览保留于创建 UMBRA 的 ChatGPT 对话附件中（该图片未附入此代码仓库）。
+- Three complete compositions: colonnaded forum, domed temple, and two-tier aqueduct.
+- Horizontal drag or arrow keys to recompose; a perspective slider changes depth compression while preserving the framing at the focus plane.
+- Independent sun direction and altitude controls, three two-color palettes, optional periodic camera tour, fullscreen, reset.
+- PNG export re-renders the current composition with a 3,840-pixel longest edge and omits all interface elements.
+- Rendering is demand-driven while static; motion pauses when the document is hidden. The initial scene is still, including for reduced-motion users.
 
-## 运行
+These are artistic architectural studies, not archaeological reconstructions of specific monuments.
 
-无需下载第三方依赖，要求 Node.js 18+：
+## Source map
 
-```bash
-npm run dev
-```
+- `app/page.tsx`, `app/globals.css`: responsive studio interface.
+- `components/RomanViewer.tsx`: Three.js lifecycle, camera, light, two-tone postprocess, PNG export.
+- `lib/roman-geometry.ts`: original merged geometry, genuine open archways, columns, dome and plaza details.
+- `lib/software-renderer.ts`: Canvas compatibility renderer using the same 3D triangles, a depth buffer and a cached directional shadow map.
 
-然后打开 http://localhost:4173 。页面也支持直接打开 `index.html`（无需服务端接口）。
+The WebGL renderer uses a Lambert illumination/shadow pass and a normal/depth pass, followed by an explicit two-value threshold and restrained edges. Browsers without WebGL use the same geometry in a Canvas software renderer with actual cast shadows. There are no external image, font, model or runtime CDN dependencies.
 
-## 功能
+## Verification
 
-- 三套原创建筑场景：永恒柱廊、穹顶之下、时间拱廊。
-- 互动控制：太阳方位、太阳高度、空间透视、三套双色色调、拖动观察视角。
-- 缓慢巡游与全屏观看。
-- 从当前作品构图导出 **长边 3840 像素** 的纯画面 PNG，不含 UI。
-- Canvas 2D 几何渲染和阴影计算，无需 WebGL。兼容不同尺寸屏幕。
+The Canvas path was exercised in the managed browser: three scene switches, palette/light/perspective controls, drag, immersive viewing, reset, notes and keyboard closing. A 390 px iframe checked responsive layout; its content width equaled its scroll width. A downloaded PNG was inspected as RGB, 3840 × 1729 pixels for the tested viewport, with exactly two colors. Export aspect ratio follows the current artwork viewport. The managed browser disables WebGL, so the GPU path received static/type/build verification but not live GPU rendering verification in that environment.
 
-## 工程结构
+## Development
 
-- `index.html` — 页面语义结构
-- `style.css` — 页面视觉和响应式布局
-- `src/scene.js` — 程序化古罗马建筑网格、明暗与投影的二维画布绘制
-- `src/app.js` — 交互控制、状态、导出与 UI 同步
-- `server.mjs` — 零依赖本地开发服务
+Use the Sites development and publication helpers supplied with this project. `npm run dev` starts the framework locally; `npm run build` builds the Worker application. `npx tsc --noEmit` checks types.
 
-## 风格来源
-
-参考 [dotslashsimran/simcraft](https://github.com/dotslashsimran/simcraft) 的 [perspective-illusion](https://github.com/dotslashsimran/simcraft/blob/main/skills/video/perspective-illusion/SKILL.md) 方法：重复物体造成空间纵深、硬光分面、两阶阴影与透视压缩。代码和建筑几何是独立重建的原创实现，不包含 Simcraft 模板代码。此作品为艺术实验，不是具体遗址的学术复原。
-
-MIT License.
+Simcraft's `perspective-illusion` and `code-loop` skills informed the rendering and camera approach. Attribution and licensing are in `THIRD_PARTY_NOTICES.md`.

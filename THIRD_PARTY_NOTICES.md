@@ -1,6 +1,13 @@
+# Third-party acknowledgements
+
+UMBRA's architectural geometry and interface are original. The two-tone rendering and level-camera approach are informed by Simcraft's perspective-illusion and code-loop skills. The depth/normal edge treatment is adapted from the perspective-illusion template.
+
+Source: https://github.com/dotslashsimran/simcraft
+Revision consulted: 58224d131814572224537fb516b8c5d33dd5fa67
+
 MIT License
 
-Copyright (c) 2026 UMBRA Roman Light Atelier contributors
+Copyright (c) 2026 Simran Sachdeva
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +26,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
