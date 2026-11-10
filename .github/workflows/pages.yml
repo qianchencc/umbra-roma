@@ -52,8 +52,12 @@ jobs:
           CONFIG
       - name: Build original application as static site
         run: npm run build
-      - name: Verify static output
+      - name: Inspect and verify static output
         run: |
+          echo "Candidate index.html files:"
+          find dist -type f -name 'index.html' || true
+          echo "Build directories:"
+          find dist -maxdepth 3 -type d | head -60
           test -f dist/client/index.html
           touch dist/client/.nojekyll
       - name: Configure GitHub Pages
