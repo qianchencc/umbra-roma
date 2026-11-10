@@ -30,3 +30,11 @@ The Canvas path was exercised in the managed browser: three scene switches, pale
 Use the Sites development and publication helpers supplied with this project. `npm run dev` starts the framework locally; `npm run build` builds the Worker application. `npx tsc --noEmit` checks types.
 
 Simcraft's `perspective-illusion` and `code-loop` skills informed the rendering and camera approach. Attribution and licensing are in `THIRD_PARTY_NOTICES.md`.
+
+## GitHub Pages
+
+**Browser demo:** https://qianchencc.github.io/umbra-roma/
+
+The browser-based Roman shadow studio is statically exported; geometry, camera, lighting and PNG export run client-side.
+
+Deployment is automated by [the Pages workflow](.github/workflows/pages.yml) on changes to `main`. First-time setup: select **GitHub Actions** in [Settings → Pages](https://github.com/qianchencc/umbra-roma/settings/pages), then rerun the workflow. GitHub Pages deployment is independent of any server-only features.
