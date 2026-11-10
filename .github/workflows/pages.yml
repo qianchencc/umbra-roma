@@ -51,21 +51,21 @@ jobs:
           export default nextConfig;
           CONFIG
       - name: Build original application as static site
-        run: npm run build
+        run: ./node_modules/.bin/next build
       - name: Inspect and verify static output
         run: |
           echo "Candidate index.html files:"
-          find dist -type f -name 'index.html' || true
+          find out -type f -name 'index.html' || true
           echo "Build directories:"
-          find dist -maxdepth 3 -type d | head -60
-          test -f dist/client/index.html
-          touch dist/client/.nojekyll
+          find out -maxdepth 3 -type d | head -60
+          test -f out/index.html
+          touch out/.nojekyll
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dist/client
+          path: out
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
