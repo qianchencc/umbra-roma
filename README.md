@@ -37,4 +37,4 @@ Simcraft's `perspective-illusion` and `code-loop` skills informed the rendering 
 
 The browser-based Roman shadow studio is statically exported; geometry, camera, lighting and PNG export run client-side.
 
-Deployment is automated by [the Pages workflow](.github/workflows/pages.yml) on changes to `main`. First-time setup: select **GitHub Actions** in [Settings → Pages](https://github.com/qianchencc/umbra-roma/settings/pages), then rerun the workflow. GitHub Pages deployment is independent of any server-only features.
+GitHub Pages is active. Deployments run independently through [this repository's workflow](.github/workflows/pages.yml) when application source changes on `main`. GitHub Pages is limited to browser-side functionality and does not host server-only features.
